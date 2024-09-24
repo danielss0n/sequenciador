@@ -1,0 +1,42 @@
+/* TÍTULO DAS TABELAS DE ANTES/DEPOIS */
+.titulo-tabela {
+    font-size: 130%;
+    padding: 1%;
+    background: linear-gradient(to bottom, #ebebeb, #ffffff);
+}
+
+/* BOTÕES DE APROVAÇÃO/REPROVAÇÃO */
+.area-botoes {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+button {
+    cursor: pointer;
+    margin-inline: 1%;
+    padding: 1% 5%;
+    border-radius: 4px;
+    font-size: 150%;
+    transition: 0.2s;
+    color: white;
+    border: 2px solid #333;
+}
+
+#botao-aprovar {
+    transition: 0.2s;
+    background: linear-gradient(to bottom, #108b00, #74cc00);
+}
+
+#botao-aprovar:hover {
+    filter: brightness(130%);
+}
+
+#botao-reprovar {
+    transition: 0.2s;
+    background: linear-gradient(to bottom, #d11e30, #ff6a2f);
+}
+
+#botao-reprovar:hover {
+    filter: brightness(130%);
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>PREPARADOR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registrar_peca.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chefe.css') }}">
+</head>
+<body>
+    <div class="outer-container">
+        <div class="container" id="quadro-registro">
+            <h1>Registrar nova peça</h1>
+            <form id="registro-form">
+                <div class="input-container">
+                    <label for="peca">Nome da Peça:</label>
+                    <input type="text" id="peca" placeholder="Digite o nome da peça" required>
+                </div>
+
+                <div class="input-container">
+                    <label for="tinta">Cor da Tinta:</label>
+                    <select id="tinta" required>
+                        <option value="">Escolha a cor</option>
+                        <option value="Fundo">Fundo</option>
+                        <option value="Intermediaria">Intermediaria</option>
+                        <option value="Laranja">Laranja</option>
+                        <option value="Azul">Azul</option>
+                    </select>
+                </div>
+
+                <button type="button" onclick="postRegistrarPeca()" id="botao-aprovar" class="button">Registrar</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/preparador/EnviarModificacao.js') }}"></script>
+</body>
+</html>
