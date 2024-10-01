@@ -1,0 +1,45 @@
+{
+    "usuario_aguardando_aprovacao": {
+        "1": "danielsson"
+    },
+    "sequencia_aguardando": {
+        "1": {
+            "peca": "CACAR\u00c7A",
+            "tinta": "PRETO",
+            "etapa_anterior": "ISOLAMENTO",
+            "em_progresso": false
+        },
+        "2": {
+            "peca": "TAMPOMEGA",
+            "tinta": "INTERMEDIARIA",
+            "etapa_anterior": "JATO",
+            "em_progresso": false
+        },
+        "4": {
+            "peca": "PE\u00c7A GREMIO",
+            "tinta": "AZUL",
+            "etapa_anterior": "JATO",
+            "em_progresso": false
+        }
+    },
+    "sequencia_aprovada": {
+        "1": {
+            "peca": "CACAR\u00c7A",
+            "tinta": "PRETO",
+            "etapa_anterior": "ISOLAMENTO",
+            "em_progresso": false
+        },
+        "2": {
+            "peca": "TAMPOMEGA",
+            "tinta": "INTERMEDIARIA",
+            "etapa_anterior": "JATO",
+            "em_progresso": false
+        },
+        "4": {
+            "peca": "PE\u00c7A GREMIO",
+            "tinta": "AZUL",
+            "etapa_anterior": "JATO",
+            "em_progresso": false
+        }
+    }
+}

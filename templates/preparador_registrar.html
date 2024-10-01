@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>PREPARADOR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registrar_peca.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chefe.css') }}">
+</head>
+<body>
+    <form id="registro-form">
+        <div class="input-container">
+            <label for="peca">Nome da Peça:</label>
+            <input type="text" id="peca" placeholder="Digite o nome da peça" required>
+        </div>
+
+        
+        <div class="input-container">
+            <label for="etapa-anterior">Etapa Anterior:</label>
+            <select id="etapa-anterior" required>
+                <option value="">Escolha a etapa</option>
+                <option value="Jato">Jato</option>
+                <option value="Isolamento">Isolamento</option>
+                <option value="Outra Etapa">Outra Etapa</option>
+            </select>
+        </div>
+
+        <div class="input-container">
+            <label for="tinta">Cor da Tinta:</label>
+            <select id="tinta" onchange="mostrarInputEspecial()" required>
+                <option value="">Escolha a tinta</option>
+                <option value="Fundo">Fundo</option>
+                <option value="Intermediaria">Intermediaria</option>
+                <option value="Preto">Preto</option>
+                <option value="Especial">Especial</option>
+            </select>
+        </div>
+
+
+        <div class="input-container" id="tinta-especial-container" style="display: none;">
+            <label for="tinta-especial">Qual tinta especial?</label>
+            <input type="text" id="tinta-especial" placeholder="Digite a tinta especial">
+        </div>
+
+        <button type="button" onclick="postRegistrarPeca()" id="botao-aprovar" class="button">Registrar</button>
+        <button type="button" id="botao-aprovar" class="button">
+            <a href="http://10.1.39.20:5000/preparador" id="voltar">Voltar</a>
+        </button>
+        
+    </form>
+    <script src="{{ url_for('static', filename='js/preparador/EnviarModificacao.js') }}"></script>
+    <script>
+        function mostrarInputEspecial() {
+            const tintaSelect = document.getElementById('tinta');
+            const tintaEspecialContainer = document.getElementById('tinta-especial-container');
+
+            if (tintaSelect.value === 'Especial') {
+                tintaEspecialContainer.style.display = 'block';
+            } else {
+                tintaEspecialContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

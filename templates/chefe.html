@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chefe.css') }}">
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const socket = io(); 
+            socket.emit('carregar_classificacao');
+        });
+    </script>
+    <title>CHEFE</title>
+</head>
+<body>
+    <script src="{{ url_for('static', filename='js/chefe/SocketUpdate.js') }}"></script>
+    <div class="container" id="main_frame">
+        <h1>NOVA MODIFICAÇÃO NA SEQUÊNCIA AGUARDANDO APROVAÇÃO</h1>
+        <div class="tables">
+            <table>
+                <caption class="titulo-tabela">SEQUÊNCIA ATUAL MOSTRADA AO OPERADOR</caption>
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>ETP. ANTERIOR</th>
+                        <th>ORDEM/PEÇA</th>
+                        <th>TINTA</th>
+                        <th>PINTANDO</th>  
+                    </tr>
+                </thead>
+                <tbody id="lista-aprovada">
+                    {% for item in current_data %}
+                        {% if item.tinta != 'tinta-especial'%}
+                            <tr class=" {% if item.tinta == 'Fundo' %}tinta-fundo
+                            {% elif item.tinta == 'Intermediaria' %}tinta-intermediaria
+                            {% elif item.tinta == 'Azul' %}tinta-azul
+                            {% elif item.tinta == 'Laranja' %}tinta-laranja
+                            {% elif item.tinta == 'Preta' %}tinta-preta
+                            {% else %}tinta-especial{% endif %}"
+                            >
+                    {% endif %}
+                        <td>{{ loop.index }}</td>
+                        <td>{{ item.etapa_anterior }}</td>
+                        <td>{{ item.peca }}</td>
+                        <td>{{ item.tinta }}</td>
+                        <td>{{ item.em_progresso }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <table>
+                <caption class="titulo-tabela" id="titulo-usuario-modificou">SEQUÊNCIA MODIFICADA POR {{ usuario }}</caption>
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>ETP. ANTERIOR</th>
+                        <th>ORDEM/PEÇA</th>
+                        <th>TINTA</th>
+                        <th>PINTANDO</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-solicitacao">
+                    {% for item in new_data %}
+                        <tr class=" {% if item.tinta == 'Fundo' %}tinta-fundo
+                        {% elif item.tinta == 'Intermediaria' %}tinta-intermediaria
+                        {% elif item.tinta == 'Azul' %}tinta-azul
+                        {% elif item.tinta == 'Laranja' %}tinta-laranja
+                        {% elif item.tinta == 'Preta' %}tinta-preta
+                        {% else %}tinta-especial               
+                        {% endif %}">
+                            <td>{{ loop.index }}</td>
+                            <td>{{ item.etapa_anterior }}</td>
+                            <td>{{ item.peca }}</td>
+                            <td><span >{{ item.tinta }}</span></td>
+                            <td>{{ item.em_progresso }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="area-botoes">
+            <button onclick="enviarAprovacao()" id="botao-aprovar" class="button">Aprovar</button>
+            <button onclick="enviarReprovacao()" id="botao-reprovar" class="button">Reprovar</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/chefe/EnviarAvaliacao.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

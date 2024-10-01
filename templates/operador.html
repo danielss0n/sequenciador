@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <title>OPERADOR</title>
+</head>
+<body>
+    <script src="{{ url_for('static', filename='js/operador/SocketUpdate.js') }}"></script>
+    <div class="container" id="main_frame">
+        <h1>SEQUENCIAMENTO DE PEÇAS</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>EM PROGRESSO</th>
+                    <th>ETP. ANTERIOR</th>
+                    <th>ORDEM/PEÇA</th>
+                    <th>TINTA</th>
+                    <th>FINALIZAR</th>
+                </tr>
+            </thead>
+            <tbody id="data-table-body">
+                {% for item in current_data %}
+                <tr class="{{item.tinta}}">
+                    {% if item.em_progresso %}
+                        <td><input type="checkbox" onclick="EmProgressoPeca(this)" checked>Em progresso</td>
+                    {% else %}
+                        <td><input type="checkbox" onclick="EmProgressoPeca(this)">Em progresso</td>
+                    {% endif %}
+                    <td>{{ item.etapa_anterior }}</td>
+                    <td>{{ item.peca }}</td>
+                    <td>{{ item.tinta }}</td>
+                    <td><i class="bi bi-check2-square" onclick="FinalizarPeca(this)"></i></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="{{url_for('static', filename='js/operador/OperadorAcoes.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
